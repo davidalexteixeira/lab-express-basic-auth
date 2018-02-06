@@ -29,6 +29,11 @@ app.use(session({
   })
 }));
 
+app.use(function (req, res, next) {
+  app.locals.user = req.session.currentUser;
+  next();
+});
+
 // View engine configuration
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
